@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveHorizontal = transform.right * xMov;
     Vector3 moveVertical = transform.forward * xMov; 
-
+ 
     Vector3 velocity = (moveHorizontal + moveVertical).normalized * speed;//quelmle direction quelle vitesse
 
  }
