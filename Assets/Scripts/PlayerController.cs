@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
 
     //Mouse x Mouse y Rotation du camera
-   float xRot = Input.GetAxisRaw("Mouse X");
+   float xRot = Input.GetAxisRaw("Mouse Y");
 
 
    Vector3 cameraRotation = new Vector3(xRot,0 , 0) * mouseSensitivityY; //blocage de x et z 
