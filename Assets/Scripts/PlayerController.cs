@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMotor))]
+[RequireComponent(typeof(ConfigurableJoint))]
 public class PlayerController : MonoBehaviour
 {
  [SerializeField]
@@ -8,14 +9,27 @@ public class PlayerController : MonoBehaviour
 
 [SerializeField]
  private float mouseSensitivityX = 3f;
+
  [SerializeField]
  private float mouseSensitivityY = 3f;
 
+ [SerializeField]
+ private float jetpackForce = 1000f;
+
+[Header("Joint Options")]
+[SerializeField]
+private float jointSpring = 20f;
+[SerializeField]
+private float jointMaxForce = 60f;
+
  private PlayerMotor motor;
+ private ConfigurableJoint joint;
  
  void Start()
  {
     motor = GetComponent<PlayerMotor>();
+    joint = GetComponent<ConfigurableJoint>();
+    SetJointSettings(jointSpring);
  }
  void Update()
  {
@@ -42,7 +56,28 @@ public class PlayerController : MonoBehaviour
    float xRot = Input.GetAxisRaw("Mouse Y");
 
 
-   Vector3 cameraRotation = new Vector3(xRot,0 , 0) * mouseSensitivityY; //blocage de x et z 
-   motor.RotateCamera(cameraRotation);
+   float cameraRotationX = xRot * mouseSensitivityY; //blocage de x et z 
+   motor.RotateCamera(cameraRotationX);
+
+
+    Vector3 jetpackVelocity = Vector3.zero;
+   // Jetpack
+   if(Input.GetButton("Jump"))
+   {
+      jetpackVelocity = Vector3.up * jetpackForce;
+      SetJointSettings(0f);
+      //Debug.Log("Jump cliqué" +jointSpring+"and"+jointMaxForce);
+   }
+   else
+   {
+      SetJointSettings(jointSpring);
+      //Debug.Log("Jump non cliqué"+jointSpring+"and"+jointMaxForce);
+   }
+   //Apppliquer la force
+   motor.AppliquerJetpack(jetpackVelocity);
+ }
+ private void SetJointSettings(float _jointSpring)
+ {
+   joint.yDrive = new JointDrive { positionSpring = _jointSpring, maximumForce = jointMaxForce };
  }
 }

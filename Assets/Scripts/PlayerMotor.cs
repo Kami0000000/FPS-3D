@@ -8,8 +8,12 @@ public class PlayerMotor : MonoBehaviour
 
    private Vector3 velocity;
    private Vector3 rotation;
-   private Vector3 cameraRotation;
+   private float cameraRotationX = 0f;
+   private float currentCameraRotationX = 0f;
+   private Vector3 jetpackVelocity;
 
+  [SerializeField]
+  private float cameraRotationLimit = 85f;
 
    private Rigidbody rb;
 
@@ -25,9 +29,13 @@ public class PlayerMotor : MonoBehaviour
    {
     rotation = _rotation;
    }
-    public void RotateCamera(Vector3 _cameraRotation)
+    public void RotateCamera(float _cameraRotationX)
    {
-    cameraRotation = _cameraRotation;
+    cameraRotationX = _cameraRotationX;
+   }
+   public void AppliquerJetpack(Vector3 _jetpackVelocity)
+   {
+      jetpackVelocity = _jetpackVelocity;
    }
    private void FixedUpdate()
    {
@@ -40,11 +48,18 @@ public class PlayerMotor : MonoBehaviour
     {
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
     }
+    if(jetpackVelocity != Vector3.zero)
+    {
+      rb.AddForce(jetpackVelocity * Time.fixedDeltaTime, ForceMode.Acceleration);
+    }
    }
    private void PerformRotation()
-   {
+   {//rotation de la camera
      rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-     cam.transform.Rotate(-cameraRotation);
+     currentCameraRotationX -=cameraRotationX;
+     currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
+
+    cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);    
    }
  
 

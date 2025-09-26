@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7935181311875456843}
   - component: {fileID: -2927054698565671358}
   - component: {fileID: 5505454249073497348}
-  - component: {fileID: 1408354254071097335}
+  - component: {fileID: -1485629555704909075}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -72,7 +72,7 @@ Rigidbody:
   m_GameObject: {fileID: 104284927663314554}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 15
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -118,6 +118,9 @@ MonoBehaviour:
   speed: 3
   mouseSensitivityX: 3
   mouseSensitivityY: 3
+  jetpackForce: 1000
+  jointSpring: 20
+  jointMaxForce: 60
 --- !u!114 &-1964364003424945091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +224,7 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!153 &1408354254071097335
+--- !u!153 &-1485629555704909075
 ConfigurableJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,9 +284,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 0
+    positionSpring: 20
     positionDamper: 0
-    maximumForce: 3.4028233e+38
+    maximumForce: 60
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
