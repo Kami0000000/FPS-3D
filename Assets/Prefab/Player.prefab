@@ -18,9 +18,10 @@ GameObject:
   - component: {fileID: -2927054698565671358}
   - component: {fileID: 5505454249073497348}
   - component: {fileID: -1485629555704909075}
-  m_Layer: 0
+  - component: {fileID: -4679069606358015197}
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 5046216913379927848}
+  cameraRotationLimit: 85
 --- !u!114 &8258582454970451393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +160,8 @@ MonoBehaviour:
   - {fileID: 8258582454970451393}
   - {fileID: 2238380317658292203}
   - {fileID: 5046216913379927848}
+  - {fileID: -4679069606358015197}
+  remoteLayerName: RemotePlayer
 --- !u!114 &-2927054698565671358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +330,29 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &-4679069606358015197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104284927663314554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b2af55a0294dff995c0cd9db9f5017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  weapon:
+    name: Basy
+    damage: 10
+    range: 100
+  cam: {fileID: 5046216913379927848}
+  mask:
+    serializedVersion: 2
+    m_Bits: 183
 --- !u!1 &534050738737882175
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +365,7 @@ GameObject:
   - component: {fileID: 5046216913379927848}
   - component: {fileID: 2238380317658292203}
   - component: {fileID: 7123600307428641448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +502,7 @@ GameObject:
   - component: {fileID: 6577101507560136117}
   - component: {fileID: 1429477012226716066}
   - component: {fileID: 3999861768677887270}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5741396617140206106}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +622,7 @@ GameObject:
   - component: {fileID: 94409049306696051}
   - component: {fileID: 8576219961470228785}
   - component: {fileID: 5007251850904409418}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6513308278261320286}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +740,7 @@ GameObject:
   - component: {fileID: 6154028846982191454}
   - component: {fileID: 7876999702263519016}
   - component: {fileID: 6110727915986297543}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +826,7 @@ GameObject:
   - component: {fileID: 2514991762595786818}
   - component: {fileID: 1767873062895349665}
   - component: {fileID: 4286065991661125954}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
