@@ -25,15 +25,18 @@ public class PlayerSetup : NetworkBehaviour
     {
         sceneCamera.gameObject.SetActive(false);
     }
-    RegisterPlayer();
+  
 }
     } 
-    //Enregistrer un nom
-    private void RegisterPlayer()
+
+    public override void OnStartClient()
     {
-        string playerName ="Player" + GetComponent<NetworkIdentity>().netId;
-        transform.name = playerName;
+        base.OnStartClient();
+        string netId = GetComponent<NetworkIdentity>().netId.ToString();
+        Player player = GetComponent<Player>();
+        GameManager.RegisterPlayer(netId, player);
     }
+ 
     private void AssignRemoteLayer()
 {
  gameObject.layer = LayerMask.NameToLayer(remoteLayerName); 
@@ -46,12 +49,15 @@ private void DisableComponents()
                 componentsToDisable[i].enabled = false;//desactivation des composants 
             }
 }
+//quitte le jeu
     private void OnDisable()
     {
          if(sceneCamera != null)
     {
         sceneCamera.gameObject.SetActive(true);
     }
+     GameManager.UnregisterPlayer(transform.name);
     }
+   
 }
 
