@@ -3,8 +3,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public MatchSettings matchSettings; 
     private const string playerIdPrefix = "Player";
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
+    public static GameManager instance;
+    private void Awake()
+    {
+     if(instance == null)
+     {
+          instance = this;
+          return;
+     }
+     Debug.LogError ("Hein?"); 
+    }
+
    public static void RegisterPlayer(string netID,Player player)
    {
         string playerId = playerIdPrefix + netID ;

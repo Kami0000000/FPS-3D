@@ -348,7 +348,7 @@ MonoBehaviour:
   syncInterval: 0
   weapon:
     name: Basy
-    damage: 10
+    damage: 40
     range: 100
   cam: {fileID: 5046216913379927848}
   mask:
@@ -366,6 +366,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97624ce80f3ead958656cd63123ea52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  maxHealth: 100
+  disableOnDeath:
+  - {fileID: -4679069606358015197}
+  - {fileID: 8258582454970451393}
 --- !u!1 &534050738737882175
 GameObject:
   m_ObjectHideFlags: 0

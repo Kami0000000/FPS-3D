@@ -25,7 +25,7 @@ public class PlayerShoot : NetworkBehaviour
                 Shoot();
          }
     }
-    [Client]
+    [Client]//Seulement au client
     private void Shoot()
     {
         RaycastHit hit;
@@ -39,12 +39,12 @@ public class PlayerShoot : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command]//Client vers serveur
     private void CmdPlayerShot(string playerId, float damage)
     {
         Debug.Log(playerId+ "a été touché.");
         Player player = GameManager.GetPlayer(playerId);
-        player.TakeDamage(damage);
+        player.RpcTakeDamage(damage);
     }
 
 }

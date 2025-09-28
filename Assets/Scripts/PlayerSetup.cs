@@ -25,6 +25,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         sceneCamera.gameObject.SetActive(false);
     }
+    GetComponent<Player>().Setup();
   
 }
     } 
@@ -42,7 +43,7 @@ public class PlayerSetup : NetworkBehaviour
  gameObject.layer = LayerMask.NameToLayer(remoteLayerName); 
 }
 
-private void DisableComponents()
+private void DisableComponents()//Eviter de prendre le controle des autres joueurs
 {
              for (int i = 0; i <componentsToDisable.Length; i++)
             {
