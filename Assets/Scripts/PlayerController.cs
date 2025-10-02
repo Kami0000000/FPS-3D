@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMotor))]
 [RequireComponent(typeof(ConfigurableJoint))]
+[RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
  [SerializeField]
@@ -16,6 +17,9 @@ public class PlayerController : MonoBehaviour
  [SerializeField]
  private float jetpackForce = 1000f;
 
+
+ 
+
 [Header("Joint Options")]
 [SerializeField]
 private float jointSpring = 20f;
@@ -24,24 +28,29 @@ private float jointMaxForce = 60f;
 
  private PlayerMotor motor;
  private ConfigurableJoint joint;
+ private Animator animator;
  
  void Start()
  {
     motor = GetComponent<PlayerMotor>();
     joint = GetComponent<ConfigurableJoint>();
+    animator  = GetComponent<Animator>();
     SetJointSettings(jointSpring);
  }
  void Update()
  {
     //Vélocité vitesse mouvement du joueur
-    float xMov = Input.GetAxisRaw("Horizontal");//1 devan -1 arriere
-    float zMov = Input.GetAxisRaw("Vertical");
+    float xMov = Input.GetAxis("Horizontal");//1 devan -1 arriere
+    float zMov = Input.GetAxis("Vertical");
 
     Vector3 moveHorizontal = transform.right * xMov;
     Vector3 moveVertical = transform.forward * zMov; 
  
     Vector3 velocity = (moveHorizontal + moveVertical).normalized * speed;//quelmle direction quelle vitesse
    motor.Move(velocity);
+
+   //animation du jetpack
+   animator.SetFloat("ForwardVelocity", zMov);
 
    //Mouse x Mouse y Rotation du joueur
    float yRot = Input.GetAxisRaw("Mouse X");

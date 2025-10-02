@@ -53,9 +53,10 @@
     <Compile Include="Assets/Scripts/PlayerShoot.cs" />
     <Compile Include="Assets/Scripts/Player.cs" />
     <Compile Include="Assets/Scripts/PlayerSetup.cs" />
+    <Compile Include="Assets/Scripts/obj/Debug/net10.0/GameManager.AssemblyInfo.cs" />
+    <Compile Include="Assets/ParticleSystems/Scripts/AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets/Scripts/PlayerMotor.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
-    <Compile Include="Assets/Scripts/obj/Debug/net10.0/PlayerSetup.AssemblyInfo.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/MatchSettings.cs" />
   </ItemGroup>
@@ -68,6 +69,7 @@
     <None Include="Assets/ScriptTemplates/56-Mirror__Network Discovery-NewNetworkDiscovery.cs.txt" />
     <None Include="Assets/ScriptTemplates/51-Mirror__Network Manager With Actions-NewNetworkManagerWithActions.cs.txt" />
     <None Include="Assets/ScriptTemplates/53-Mirror__Network Behaviour With Actions-NewNetworkBehaviourWithActions.cs.txt" />
+    <None Include="Assets/multiplayer-fps-assets/README.txt" />
     <None Include="Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll" />
     <None Include="Assets/Mirror/Readme.txt" />
     <None Include="Assets/ScriptTemplates/57-Mirror__Network Transform-NewNetworkTransform.cs.txt" />
