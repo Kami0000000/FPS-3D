@@ -3,7 +3,15 @@ using Mirror;//Multijoueur
 
 public class PlayerShoot : NetworkBehaviour
 {
-    public PlayerWeapon weapon;
+    [SerializeField]
+    private PlayerWeapon weapon;
+
+    [SerializeField]
+    private GameObject weaponGFX;
+
+    [SerializeField]
+    private string weaponLayerName="Weapon";
+
     [SerializeField]//Remplier dans l'éditeur
     private Camera cam;
 
@@ -15,7 +23,9 @@ public class PlayerShoot : NetworkBehaviour
         if(cam == null)
         {
             Debug.LogError("Tsy mandeha ny camera satria tsy misy");
+            this.enabled = false;
         }
+        weaponGFX.layer = LayerMask.NameToLayer(weaponLayerName);
         
     }
     private void Update()
