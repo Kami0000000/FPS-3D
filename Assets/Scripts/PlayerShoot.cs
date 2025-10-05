@@ -1,22 +1,21 @@
 using UnityEngine;
 using Mirror;//Multijoueur
 
+[RequireComponent(typeof(WeaponManager))]
 public class PlayerShoot : NetworkBehaviour
 {
-    [SerializeField]
-    private PlayerWeapon weapon;
+    
+    
 
-    [SerializeField]
-    private GameObject weaponGFX;
-
-    [SerializeField]
-    private string weaponLayerName="Weapon";
 
     [SerializeField]//Remplier dans l'éditeur
     private Camera cam;
 
     [SerializeField]
     private LayerMask mask;
+
+   private PlayerWeapon currentWeapon;
+    private WeaponManager weaponManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,26 +24,49 @@ public class PlayerShoot : NetworkBehaviour
             Debug.LogError("Tsy mandeha ny camera satria tsy misy");
             this.enabled = false;
         }
-        weaponGFX.layer = LayerMask.NameToLayer(weaponLayerName);
+       
+
+        weaponManager = GetComponent<WeaponManager>();
         
     }
     private void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        currentWeapon = weaponManager.GetCurrentWeapon();
+        if(currentWeapon.fireRate <=0f)
+        {
+             if(Input.GetButtonDown("Fire1"))
         {
                 Shoot();
          }
+        }
+      else
+{
+    if (Input.GetButtonDown("Fire1"))
+    {
+        // Commence à tirer en continu
+        InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
+    }
+    else if (Input.GetButtonUp("Fire1"))
+    {
+        // Arrête de tirer quand on relâche
+        CancelInvoke("Shoot");
+    }
+}
+
     }
     [Client]//Seulement au client
     private void Shoot()
     {
+
+        Debug.Log("Bang");
+
         RaycastHit hit;
-        if(Physics.Raycast(cam.transform.position,cam.transform.forward,out hit, weapon.range, mask) )
+        if(Physics.Raycast(cam.transform.position,cam.transform.forward,out hit, currentWeapon.range, mask) )
         {
             if(hit.collider.tag == "Player")
             {
                 //Commande
-                CmdPlayerShot(hit.collider.name, weapon.damage);
+                CmdPlayerShot(hit.collider.name, currentWeapon.damage);
             }
         }
     }

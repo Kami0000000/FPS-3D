@@ -57,6 +57,7 @@
     <Compile Include="Assets/ParticleSystems/Scripts/AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets/Scripts/PlayerMotor.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
+    <Compile Include="Assets/Scripts/WeaponManager.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/MatchSettings.cs" />
   </ItemGroup>
