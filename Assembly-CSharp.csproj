@@ -56,6 +56,7 @@
     <Compile Include="Assets/Scripts/WeaponGraphics.cs" />
     <Compile Include="Assets/Scripts/PlayerSetup.cs" />
     <Compile Include="Assets/Scripts/obj/Debug/net10.0/GameManager.AssemblyInfo.cs" />
+    <Compile Include="Assets/Scripts/PlayerUI.cs" />
     <Compile Include="Assets/ParticleSystems/Scripts/AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets/Scripts/PlayerMotor.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />

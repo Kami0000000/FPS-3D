@@ -17,6 +17,17 @@ public class PlayerController : MonoBehaviour
  [SerializeField]
  private float jetpackForce = 1000f;
 
+ [SerializeField]
+ private float jetpackFuelBurnSpeed = 1f;
+
+ [SerializeField]
+ private float jetpackFuelRegenSpeed = 0.3f;
+ private float jetpackFuelAmount = 1f;
+ 
+public float GetJetpackFuelAmount()
+{
+   return jetpackFuelAmount;
+}
 
  
 
@@ -39,6 +50,17 @@ private float jointMaxForce = 60f;
  }
  void Update()
  {
+   RaycastHit _hit;
+   if(Physics.Raycast(transform.position, Vector3.down, out _hit, 100f))
+   {
+      joint.targetPosition = new Vector3(0f, -_hit.point.y , 0f);
+   }
+   else
+   {
+      joint.targetPosition = new Vector3(0f, 0f ,0f);//le sol
+   }
+
+
     //Vélocité vitesse mouvement du joueur
     float xMov = Input.GetAxis("Horizontal");//1 devan -1 arriere
     float zMov = Input.GetAxis("Vertical");
@@ -71,17 +93,27 @@ private float jointMaxForce = 60f;
 
     Vector3 jetpackVelocity = Vector3.zero;
    // Jetpack
-   if(Input.GetButton("Jump"))
+   if(Input.GetButton("Jump") && jetpackFuelAmount > 0 )
    {
-      jetpackVelocity = Vector3.up * jetpackForce;
-      SetJointSettings(0f);
+       jetpackFuelAmount -= jetpackFuelBurnSpeed * Time.deltaTime;
+      if(jetpackFuelAmount >= 0.01f)
+      {
+         
+         jetpackVelocity = Vector3.up * jetpackForce;
+         SetJointSettings(0f);
+      }
+     
+      
       //Debug.Log("Jump cliqué" +jointSpring+"and"+jointMaxForce);
    }
    else
    {
+      jetpackFuelAmount += jetpackFuelRegenSpeed * Time.deltaTime;
       SetJointSettings(jointSpring);
       //Debug.Log("Jump non cliqué"+jointSpring+"and"+jointMaxForce);
    }
+   //clamper le jetpackFuel entre 0 et 1
+   jetpackFuelAmount = Mathf.Clamp(jetpackFuelAmount, 0f, 1f);
    //Apppliquer la force
    motor.AppliquerJetpack(jetpackVelocity);
  }

@@ -1,5 +1,9 @@
 using UnityEngine;
 using Mirror;
+
+[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(Player))]
+
 public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
@@ -39,6 +43,17 @@ public class PlayerSetup : NetworkBehaviour
     Util.SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
     //Création du UI du joueur local
     playerUIInstance=Instantiate(playerUIPrefab);
+
+    //Configuration du UI
+    PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
+    if(ui == null)
+    {
+        Debug.LogError("Pas de ui");
+
+    } else
+    {
+        ui.SetController(GetComponent<PlayerController>());
+    }
   
 }
 GetComponent<Player>().Setup();
