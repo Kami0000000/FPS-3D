@@ -172,6 +172,7 @@ MonoBehaviour:
   dontDrawLayerName: DontDraw
   playerGraphics: {fileID: 4723355369104599375}
   playerUIPrefab: {fileID: 4367410092966308887, guid: cbbf3792c047adc1e80c688dd1a92d29, type: 3}
+  playerUIInstance: {fileID: 0}
 --- !u!114 &-2927054698565671358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +379,11 @@ MonoBehaviour:
   disableOnDeath:
   - {fileID: -4679069606358015197}
   - {fileID: 8258582454970451393}
+  disableGameObjectOnDeath:
+  - {fileID: 4723355369104599375}
+  - {fileID: 534050738737882175}
+  deathEffect: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
+  spawnEffect: {fileID: 7359611866519553005, guid: 2f0a19a93b63d4f0bb0d78ba56c65548, type: 3}
 --- !u!95 &4490720271228647130
 Animator:
   serializedVersion: 7

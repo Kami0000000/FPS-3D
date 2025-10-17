@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     private const string playerIdPrefix = "Player";
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
     public static GameManager instance;
+
+    [SerializeField]
+     private GameObject sceneCamera;
     private void Awake()
     {
      if(instance == null)
@@ -17,6 +20,13 @@ public class GameManager : MonoBehaviour
      Debug.LogError ("Hein?"); 
     }
 
+     public void SetSCeneCameraActive(bool isActive)
+     {
+          if(sceneCamera ==null)
+          {
+               return;
+          }
+     }
    public static void RegisterPlayer(string netID,Player player)
    {
         string playerId = playerIdPrefix + netID ;
