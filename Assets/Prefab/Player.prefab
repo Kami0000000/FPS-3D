@@ -456,9 +456,9 @@ MonoBehaviour:
   syncInterval: 0
   primaryWeapon:
     name: Basy
-    damage: 10
+    damage: 3
     range: 100
-    fireRate: 10
+    fireRate: 15
     graphics: {fileID: 8092554569259978122, guid: 08bc5ddf7432654809e35a403f084fb8, type: 3}
   weaponHolder: {fileID: 5900191957438818025}
   weaponLayerName: Weapon

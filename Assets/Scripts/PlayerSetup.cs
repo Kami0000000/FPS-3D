@@ -56,9 +56,9 @@ public class PlayerSetup : NetworkBehaviour
     {
         ui.SetController(GetComponent<PlayerController>());
     }
+GetComponent<Player>().Setup();
   
 }
-GetComponent<Player>().Setup();
     } 
 
 
@@ -86,8 +86,11 @@ private void DisableComponents()//Eviter de prendre le controle des autres joueu
     private void OnDisable()
     {
         Destroy(playerUIInstance);
-
-    GameManager.instance.SetSCeneCameraActive(true);
+    if(!isLocalPlayer)
+    {
+         GameManager.instance.SetSCeneCameraActive(true);
+    }
+   
     //      if(sceneCamera != null)
     // {
     //     sceneCamera.gameObject.SetActive(true);

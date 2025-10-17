@@ -2,6 +2,7 @@ using UnityEngine;
 using Mirror;
 using System.Collections;
 
+
 [RequireComponent(typeof(PlayerSetup))]
 public class Player : NetworkBehaviour
 {
@@ -38,17 +39,43 @@ public class Player : NetworkBehaviour
         [SerializeField]
     private GameObject spawnEffect;
 
+    private bool firstSetup = true;
+
+
     public void Setup()
     {
-        wasEnabledOnStart = new bool[disableOnDeath.Length];
+          
+          //changement de camera
+          if(isLocalPlayer)
+        
+           GameManager.instance.SetSCeneCameraActive(false); 
+            GetComponent<PlayerSetup>().playerUIInstance.SetActive(true);
+        
+       CmdBroadCastNewPlayerSetup();
+    }
+
+    [Command/*(ignoreAuthority = true)*/]
+    private void CmdBroadCastNewPlayerSetup()
+    {
+        RpcSetupPlayerOnAllClients();
+    }
+
+
+    [ClientRpc]
+    private void RpcSetupPlayerOnAllClients()
+    {
+        if(firstSetup)
+        {
+               wasEnabledOnStart = new bool[disableOnDeath.Length];
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
             wasEnabledOnStart[i] = disableOnDeath[i].enabled;
         }
 
         SetDefaults();
+        }
+      
     }
-
 
     //Remettre à zéro les paramètre
     public void SetDefaults()
@@ -70,12 +97,7 @@ public class Player : NetworkBehaviour
         {
             col.enabled = true;
         }
-         //chanegement de camera
-        if(isLocalPlayer)
-        {
-           GameManager.instance.SetSCeneCameraActive(false); 
-            GetComponent<PlayerSetup>().playerUIInstance.SetActive(true);
-        }
+       
 
          //  EFFETS DE PARTICULES
        GameObject _gfxIns = Instantiate (spawnEffect, transform.position, Quaternion.identity);
@@ -148,6 +170,11 @@ public class Player : NetworkBehaviour
         Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
-        SetDefaults();
+         //changement de camera
+        
+       yield return new WaitForSeconds(0.1f);
+        Setup();
+
+
     }
 }
