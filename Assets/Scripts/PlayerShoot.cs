@@ -6,7 +6,7 @@ public class PlayerShoot : NetworkBehaviour
 {
     
     
-
+PlayerMotor motor = new PlayerMotor();
 
     [SerializeField]//Remplier dans l'éditeur
     private Camera cam;
@@ -31,6 +31,11 @@ public class PlayerShoot : NetworkBehaviour
     }
     private void Update()
     {
+        if(PauseMenu.isOn)
+        {
+            
+            return;
+        }
         currentWeapon = weaponManager.GetCurrentWeapon();
         if(currentWeapon.fireRate <=0f)
         {

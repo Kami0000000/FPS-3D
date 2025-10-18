@@ -55,6 +55,7 @@
     <Compile Include="Assets/ParticleSystems/Scripts/ExplosionPhysicsForce.cs" />
     <Compile Include="Assets/Scripts/Player.cs" />
     <Compile Include="Assets/Scripts/Util.cs" />
+    <Compile Include="Assets/Scripts/PauseMenu.cs" />
     <Compile Include="Assets/Scripts/WeaponGraphics.cs" />
     <Compile Include="Assets/Scripts/PlayerSetup.cs" />
     <Compile Include="Assets/Scripts/obj/Debug/net10.0/GameManager.AssemblyInfo.cs" />
