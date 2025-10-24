@@ -168,10 +168,11 @@ MonoBehaviour:
   - {fileID: 5046216913379927848}
   - {fileID: 4490720271228647130}
   - {fileID: 3560762830754375219}
+  playerCamera: {fileID: 5046216913379927848}
   remoteLayerName: RemotePlayer
   dontDrawLayerName: DontDraw
   playerGraphics: {fileID: 4723355369104599375}
-  playerUIPrefab: {fileID: 4367410092966308887, guid: cbbf3792c047adc1e80c688dd1a92d29, type: 3}
+  playerUIPrefab: {fileID: 6328607967061879023, guid: cbbf3792c047adc1e80c688dd1a92d29, type: 3}
   playerUIInstance: {fileID: 0}
 --- !u!114 &-2927054698565671358
 MonoBehaviour:
@@ -376,6 +377,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   maxHealth: 100
+  kills: 0
+  deaths: 0
   disableOnDeath:
   - {fileID: -4679069606358015197}
   - {fileID: 8258582454970451393}

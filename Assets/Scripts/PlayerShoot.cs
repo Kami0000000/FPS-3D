@@ -6,7 +6,7 @@ public class PlayerShoot : NetworkBehaviour
 {
     
     
-PlayerMotor motor = new PlayerMotor();
+    private PlayerMotor motor; 
 
     [SerializeField]//Remplier dans l'éditeur
     private Camera cam;
@@ -27,7 +27,7 @@ PlayerMotor motor = new PlayerMotor();
        
 
         weaponManager = GetComponent<WeaponManager>();
-        
+        motor = GetComponent<PlayerMotor>(); // ✅ récupération du composant
     }
     private void Update()
     {
@@ -102,7 +102,7 @@ PlayerMotor motor = new PlayerMotor();
             if(hit.collider.tag == "Player")
             {
                 //Commande
-                CmdPlayerShot(hit.collider.name, currentWeapon.damage);
+                CmdPlayerShot(hit.collider.name, currentWeapon.damage, transform.name);
             }
 
             CmdOnHit(hit.point, hit.normal);
@@ -110,11 +110,11 @@ PlayerMotor motor = new PlayerMotor();
     }
 
     [Command]//Client vers serveur
-    private void CmdPlayerShot(string playerId, float damage)
+    private void CmdPlayerShot(string playerId, float damage, string sourceID)
     {
         Debug.Log(playerId+ "a été touché.");
         Player player = GameManager.GetPlayer(playerId);
-        player.RpcTakeDamage(damage);
+        player.RpcTakeDamage(damage, sourceID);
     }
 
 }

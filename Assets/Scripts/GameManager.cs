@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq; //Récupérer ou formater des donéess
 public class GameManager : MonoBehaviour
 {
     public MatchSettings matchSettings; 
@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
    {
         return players[playerId];
    }
+
+   public static Player[] GetAllPlayers()
+   {
+     return players.Values.ToArray();//to array dans Linq
+   }
+   
 //    private void OnGUI()
 //    {
 //     GUILayout.BeginArea(new Rect(200, 200, 200, 500));//MOdele d'afichage

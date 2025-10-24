@@ -11,6 +11,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
 
+  [SerializeField]
+   private GameObject scoreBoard;
+
     public void SetController(PlayerController _controller )
     {
         controller = _controller;
@@ -27,11 +30,21 @@ private void Update()
 {
     
 SetFuellAmount(controller.GetJetpackFuelAmount());
+
 if(Input.GetKeyDown(KeyCode.Escape))
 {
     TogglePauseMenu();
-    PauseMenu.isOn = pauseMenu.activeSelf;
+   
 }
+
+if(Input.GetKeyDown(KeyCode.Tab))
+{
+    scoreBoard.SetActive(true);
+}else if(Input.GetKeyUp(KeyCode.Tab))
+{
+    scoreBoard.SetActive(false); 
+}
+
 }
 public void TogglePauseMenu()
 {

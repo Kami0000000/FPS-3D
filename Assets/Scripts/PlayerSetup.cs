@@ -9,6 +9,9 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] componentsToDisable;
 
+    // [SerializeField]
+    // private Camera playerCamera;
+
 
     [SerializeField]
     private string remoteLayerName = "RemotePlayer";  
@@ -33,6 +36,13 @@ public class PlayerSetup : NetworkBehaviour
         {
            DisableComponents();
            AssignRemoteLayer();
+
+   // Désactive tous les AudioListener sur ce joueur distant
+        AudioListener[] listeners = GetComponentsInChildren<AudioListener>();
+        foreach (AudioListener listener in listeners)
+        {
+            listener.enabled = false;
+        }
         }
         else
 {
